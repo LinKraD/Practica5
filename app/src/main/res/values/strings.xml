@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Practica5</string>
+    <string name="descripcion_dia">como ha ido el dia</string>
+    <string name="valora_dia">valora el día</string>
+    <string name="fecha">fecha</string>
+    <string name="resumen_dia">resumen del día</string>
+    <string name="guardar">guardar</string>
+    <string name="anyadir">añadir</string>
+    <string name="borrar">borrar</string>
+    <string name="ordenar">ordenar</string>
+    <string name="valorar_vida">valorar vida</string>
+    <string name="mostrar_desde_hasta">mostrar desde ... hasta ...</string>
+    <string name="opciones">opciones</string>
+    <string name="acerca_de">acerca de</string>
+    <string name="aviso">Advertencia</string>
+    <string name="avisoBorrar">¿Seguro que desea borrar el día seleccionado?</string>
+    <string name="no_seleccionado">No hay ningun día seleccionado</string>
+    <string name="si">SI</string>
+    <string name="no">NO</string>
+    <string name="atras">Atras</string>
+    <string name="resultadocancelado">Cancelado</string>
+</resources>

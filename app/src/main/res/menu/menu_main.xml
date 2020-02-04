@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_anyadir"
+        android:icon="@android:drawable/ic_menu_add"
+        android:orderInCategory="100"
+        android:title="@string/anyadir"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_borrar"
+        android:icon="@android:drawable/ic_menu_delete"
+        android:orderInCategory="100"
+        android:title="@string/borrar"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_ordenar"
+        android:icon="@android:drawable/ic_menu_sort_alphabetically"
+        android:orderInCategory="100"
+        android:title="@string/ordenar"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_valorarVida"
+        android:orderInCategory="100"
+        android:title="@string/valorar_vida"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_mostrarDesde"
+        android:orderInCategory="100"
+        android:title="@string/mostrar_desde_hasta"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_opciones"
+        android:orderInCategory="100"
+        android:title="@string/opciones"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_acercaDe"
+        android:orderInCategory="100"
+        android:title="@string/acerca_de"
+        app:showAsAction="never" />
+
+</menu>
