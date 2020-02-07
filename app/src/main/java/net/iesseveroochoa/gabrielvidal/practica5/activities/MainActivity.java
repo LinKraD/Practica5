@@ -6,8 +6,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,6 +17,8 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
 
 import net.iesseveroochoa.gabrielvidal.practica5.R;
 import net.iesseveroochoa.gabrielvidal.practica5.fragments.DiaFragment;
@@ -64,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 if (esPantallaGrande) {
                     tvNoDia.setVisibility(View.INVISIBLE);
                     crearFragment(dia);
+                    guardaDiaPreferencias();
                 } else {
                     Intent i = new Intent(MainActivity.this, VerDiaActivity.class);
                     i.putExtra(VerDiaActivity.EXTRA_VER_DIA, dia);
@@ -239,6 +244,35 @@ public class MainActivity extends AppCompatActivity {
                     dialog.cancel();
                 }
             }).show();
+        }
+    }
+
+    private void mostrarDiaSesionAnterior(){
+        SharedPreferences pref=getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
+        Gson gson=new Gson();
+        String json =pref.getString("Ultimodia","");
+        if(json!="") {
+            DiaDiario dia = gson.fromJson(json, DiaDiario.class);
+            crearFragment(dia);
+        }
+    }
+
+    private void guardaDiaPreferencias(){
+        SharedPreferences pref=getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor=pref.edit();
+        String jsonDia="";
+        if (diaFragment!=null){
+            Gson gson=new Gson();
+            jsonDia=gson.toJson(diaFragment.getDia());
+        }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        if (esPantallaGrande){
+            mostrarDiaSesionAnterior();
         }
     }
 }
