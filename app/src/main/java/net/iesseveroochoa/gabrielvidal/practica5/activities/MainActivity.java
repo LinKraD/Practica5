@@ -2,15 +2,18 @@ package net.iesseveroochoa.gabrielvidal.practica5.activities;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,13 +33,15 @@ import net.iesseveroochoa.gabrielvidal.practica5.modelo.DiarioDB;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements  SharedPreferences.OnSharedPreferenceChangeListener{
 
     private final static int DIA = 0;
     public final static String EXTRA_DIA_ENVIADO = "dia_enviado";
     public static final String EXTRA_VER_DIA = "ver_dia";
+    public static final String EXTRA_COLOR = "color_fondo";
     public final static int EXTRA_DIA = 1;
 
+    SharedPreferences preferencias;
 
     private DiarioDB diarioDB;
     private List<DiaDiario> dias = new ArrayList<>();
@@ -46,10 +51,17 @@ public class MainActivity extends AppCompatActivity {
     private FrameLayout frameContenedorDinamico;
     private TextView tvNoDia;
 
+    private boolean cambiadaConfiguracionChicoChica;
+    private String colorFondo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        PreferenceManager.setDefaultValues(this,R.xml.preferencias,false);
+
+        preferencias = PreferenceManager.getDefaultSharedPreferences(this);
+        preferencias.registerOnSharedPreferenceChangeListener(this);
 
         frameContenedorDinamico = (FrameLayout) findViewById(R.id.fl_grande);
         if (frameContenedorDinamico == null) {
@@ -62,6 +74,15 @@ public class MainActivity extends AppCompatActivity {
 
         listaFragment = (ListaFragment) getSupportFragmentManager().findFragmentById(R.id.fgm_Lista);
 
+        if (esPantallaGrande) {
+            colorFondo = preferencias.getString("genero_preference", "");
+            if (colorFondo.equals("chico")){
+                frameContenedorDinamico.setBackgroundColor(ContextCompat.getColor(this, R.color.chico));
+            } else if (colorFondo.equals("chica")){
+                frameContenedorDinamico.setBackgroundColor(ContextCompat.getColor(this, R.color.chica));
+            }
+        }
+
         listaFragment.setListaDiarioListener(new ListaFragment.OnListaDiarioListener() {
             @Override
             public void onDiaSeleccionado(DiaDiario dia) {
@@ -70,8 +91,10 @@ public class MainActivity extends AppCompatActivity {
                     crearFragment(dia);
                     guardaDiaPreferencias();
                 } else {
+                    colorFondo=preferencias.getString("genero_preference","");
                     Intent i = new Intent(MainActivity.this, VerDiaActivity.class);
                     i.putExtra(VerDiaActivity.EXTRA_VER_DIA, dia);
+                    i.putExtra(VerDiaActivity.EXTRA_COLOR,colorFondo);
                     startActivityForResult(i, EXTRA_DIA);
                 }
             }
@@ -115,6 +138,9 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.action_valorarVida:
                 valorarVida();
+                return true;
+            case R.id.action_opciones:
+                startActivity(new Intent(MainActivity.this, OpcionesActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -273,6 +299,38 @@ public class MainActivity extends AppCompatActivity {
 
         if (esPantallaGrande){
             mostrarDiaSesionAnterior();
+        }
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        switch (key) {
+            case "nombre_preference":
+                if (esPantallaGrande){
+                    this.setTitle("Diario de "+preferencias.getString(key,""));
+                }
+            case "genero_preference":
+                if (preferencias.getString(key,"").equals("chico")){
+                    if (esPantallaGrande){
+                        if (diaFragment==null) {
+                            frameContenedorDinamico.setBackgroundColor(ContextCompat.getColor(this, R.color.chico));
+                        } else {
+                            diaFragment.setColorFondo("chico");
+                        }
+                    } else {
+                        colorFondo="chico";
+                    }
+                } else if (preferencias.getString(key,"").equals("chica")){
+                    if (esPantallaGrande){
+                        if (diaFragment==null) {
+                        frameContenedorDinamico.setBackgroundColor(ContextCompat.getColor(this,R.color.chica));
+                        } else {
+                            diaFragment.setColorFondo("chica");
+                        }
+                    } else {
+                        colorFondo="chica";
+                    }
+                }
         }
     }
 }

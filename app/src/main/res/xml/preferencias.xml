@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Datos personales">
+
+        <EditTextPreference
+            android:key="nombre_preference"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:summary="Con que nombre quieres que nos dirijamos a ti."
+            android:title="Nombre" />
+        <EditTextPreference
+            android:key="fecha_preference"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:summary="Fecha de cumpleaños."
+            android:title="Fecha de cumpleaños" />
+        <ListPreference
+            android:entries="@array/genero"
+            android:entryValues="@array/codigogenero"
+            android:key="genero_preference"
+            android:summary="Eres un/una..."
+            android:title="Eres..." />
+    </PreferenceCategory>
+</PreferenceScreen>

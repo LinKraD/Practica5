@@ -1,12 +1,15 @@
 package net.iesseveroochoa.gabrielvidal.practica5.fragments;
 
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import net.iesseveroochoa.gabrielvidal.practica5.R;
@@ -23,6 +26,8 @@ public class DiaFragment extends Fragment {
 
     private DiaDiario dia;
 
+    private static FrameLayout ltDia;
+
     public DiaFragment() {
     }
 
@@ -35,10 +40,10 @@ public class DiaFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dia_fragment, container, false);
 
+        ltDia = view.findViewById(R.id.lt_Dia);
 
         this.setRetainInstance(true);
         return view;
@@ -49,7 +54,6 @@ public class DiaFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
 
         tvFecha = getView().findViewById(R.id.tv_Fecha);
         tvResumen = getView().findViewById(R.id.tv_Resumen);
@@ -85,5 +89,13 @@ public class DiaFragment extends Fragment {
 
     public DiaDiario getDia(){
         return this.dia;
+    }
+
+    public void setColorFondo(String colorFondo){
+        if (colorFondo.equals("chico")) {
+            ltDia.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.chico));
+        } else if (colorFondo.equals("chica")){
+            ltDia.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.chica));
+        }
     }
 }

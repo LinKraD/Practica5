@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="genero">
+        <item>Chico</item>
+        <item>Chica</item>
+    </string-array>
+    <string-array name="codigogenero">
+        <item>"chico"</item>
+        <item>"chica"</item>
+    </string-array>
+</resources>

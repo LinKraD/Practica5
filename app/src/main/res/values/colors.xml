@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorFondoLista">#81D494</color>
+    <color name="chico">#05FF30</color>
+    <color name="chica">#FF00FF</color>
 </resources>

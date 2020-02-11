@@ -9,17 +9,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.EdicionDiaActivity"
+        <activity android:name=".activities.OpcionesActivity"></activity>
+        <activity
+            android:name=".activities.EdicionDiaActivity"
             android:parentActivityName=".activities.MainActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value="net.iesseveroochoa.gabrielvidal.practica5.activities.MainActivity"/>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="net.iesseveroochoa.gabrielvidal.practica5.activities.MainActivity" />
         </activity>
-        <activity android:name=".activities.VerDiaActivity"
+        <activity
+            android:name=".activities.VerDiaActivity"
             android:parentActivityName=".activities.MainActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value="net.iesseveroochoa.gabrielvidal.practica5.activities.MainActivity"/>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="net.iesseveroochoa.gabrielvidal.practica5.activities.MainActivity" />
         </activity>
-        <activity android:name=".activities.MainActivity"
+        <activity
+            android:name=".activities.MainActivity"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
