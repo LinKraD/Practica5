@@ -49,8 +49,9 @@
         android:id="@+id/tvValorVida"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="64dp"
         android:text="@string/valora_dia"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -62,18 +63,20 @@
         android:id="@+id/spnValorVida"
         android:layout_width="107dp"
         android:layout_height="35dp"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="29dp"
-        app:layout_constraintStart_toEndOf="@+id/tvValorVida"
-        app:layout_constraintTop_toBottomOf="@+id/etResumen"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvValorVida"
         tools:ignore="RtlCompat" />
 
     <ScrollView
         android:id="@+id/svContenido"
         android:layout_width="0dp"
         android:layout_height="200dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="48dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spnValorVida">
 
@@ -86,4 +89,17 @@
             android:hint="@string/descripcion_dia"
             android:inputType="textMultiLine" />
     </ScrollView>
+
+    <ImageView
+        android:id="@+id/ivImagen"
+        android:layout_width="146dp"
+        android:layout_height="152dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/svContenido"
+        app:layout_constraintStart_toEndOf="@+id/spnValorVida"
+        app:layout_constraintTop_toBottomOf="@+id/etResumen"
+        app:srcCompat="@android:drawable/sym_def_app_icon" />
 </androidx.constraintlayout.widget.ConstraintLayout>

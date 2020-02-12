@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Menu;
@@ -141,6 +142,9 @@ public class MainActivity extends AppCompatActivity implements  SharedPreference
                 return true;
             case R.id.action_opciones:
                 startActivity(new Intent(MainActivity.this, OpcionesActivity.class));
+                return true;
+            case R.id.action_img:
+                mostrarFoto();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -331,6 +335,14 @@ public class MainActivity extends AppCompatActivity implements  SharedPreference
                         colorFondo="chica";
                     }
                 }
+        }
+    }
+    public void mostrarFoto(){
+        if(!diaFragment.getDia().getFotoUri().equals("")) {
+            Intent intent= new Intent();
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.setDataAndType(Uri.parse(diaFragment.getDia().getFotoUri()), "image/*");
+            startActivity(intent);
         }
     }
 }

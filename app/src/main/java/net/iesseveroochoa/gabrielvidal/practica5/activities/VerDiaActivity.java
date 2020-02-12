@@ -2,6 +2,7 @@ package net.iesseveroochoa.gabrielvidal.practica5.activities;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Layout;
 import android.view.Menu;
@@ -76,13 +77,22 @@ public class VerDiaActivity extends AppCompatActivity {
                 i.putExtra(EXTRA_VER_DIA, dia);
                 setResult(VerDiaActivity.RESULT_OK, i);
                 finish();
-
                 return true;
-
+            case R.id.action_img:
+                mostrarFoto();
+                return true;
             default:
 
                 return super.onOptionsItemSelected(item);
 
+        }
+    }
+
+    public void mostrarFoto(){
+        if(!dia.getFotoUri().equals("")) {
+            Intent intent= new Intent();
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.setDataAndType(Uri.parse(dia.getFotoUri()), "image/*");startActivity(intent);
         }
     }
 }

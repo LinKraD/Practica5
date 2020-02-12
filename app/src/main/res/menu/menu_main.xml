@@ -14,7 +14,14 @@
         android:icon="@android:drawable/ic_menu_delete"
         android:orderInCategory="100"
         android:title="@string/borrar"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_img"
+        android:icon="@android:drawable/ic_menu_gallery"
+        android:orderInCategory="100"
+        android:title="@string/imagen"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/action_ordenar"
