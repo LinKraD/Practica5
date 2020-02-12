@@ -2,6 +2,7 @@ package net.iesseveroochoa.gabrielvidal.practica5.activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentManager;
@@ -104,6 +105,7 @@ public class EdicionDiaActivity extends AppCompatActivity {
         return true;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -163,12 +165,14 @@ public class EdicionDiaActivity extends AppCompatActivity {
         dpd.show();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void rellenarDia() {
 
         etResumen = findViewById(R.id.etResumen);
         etContenido = findViewById(R.id.etContenido);
         resumen = etResumen.getText().toString();
         contenido = etContenido.getText().toString();
+        fotoUri=ivImagen.getTransitionName();
 
         if (fecha == null || resumen.equals("") || contenido.equals("")) {
 
@@ -178,7 +182,7 @@ public class EdicionDiaActivity extends AppCompatActivity {
 
         } else {
 
-            dia = new DiaDiario(DiarioDB.fechaBDtoFecha(fecha), valoracionDia, resumen, contenido, "0", "0", "0");
+            dia = new DiaDiario(DiarioDB.fechaBDtoFecha(fecha), valoracionDia, resumen, contenido, fotoUri, "0", "0");
             enviarDia(dia);
 
         }
